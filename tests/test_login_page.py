@@ -1,6 +1,7 @@
 from pages.LoginPage import LoginPage
 from playwright.sync_api import Page, expect
 import pytest
+import time
 
 base_url = "https://login.coupang.com/login/login.pang"
 
@@ -41,3 +42,15 @@ def test_qr_login_page_visual(assert_snapshot, setup_browser) -> None:
     login_page.select_qr_login()
     masking_list = [login_page.qr_login_number, login_page.qr_login_image, login_page.qr_login_timer]
     assert_snapshot(login_page.page.screenshot(full_page = True, mask = masking_list))
+
+
+def test_email_login(assert_snapshot, setup_browser) -> None:
+    page = setup_browser
+    page.goto(base_url)
+    page.wait_for_load_state("load")
+                             
+    expect(page).to_have_url(base_url)
+
+    login_page = LoginPage(page)
+    time.sleep(10)
+    login_page.login_with_email("selee_nonwow@cp.com","selee965")
