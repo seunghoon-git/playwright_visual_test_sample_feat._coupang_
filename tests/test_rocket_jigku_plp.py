@@ -5,8 +5,8 @@ import pytest
 
 base_url = "https://www.coupang.com/np/coupangglobal"
 
-@pytest.mark.visual_test
-def test_rocket_fresh_plp_full_page_visual(assert_snapshot, setup_browser) -> None:
+#@pytest.mark.visual_test
+def test_rocket_jigku_plp_full_page_visual(assert_snapshot, setup_browser) -> None:
     page = setup_browser
     page.goto(base_url)
     page.wait_for_load_state("load")

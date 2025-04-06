@@ -5,7 +5,7 @@ import pytest
 
 base_url = "https://www.coupang.com/np/campaigns/82"
 
-@pytest.mark.visual_test
+#@pytest.mark.visual_test
 def test_rocket_delivery_plp_full_page_visual(assert_snapshot, setup_browser) -> None:
     page = setup_browser
     page.goto(base_url)
