@@ -11,7 +11,7 @@ class GateWay:
         self.login_button_in_header = page.locator(".top-bar").get_by_role("link", name="로그인", exact=True)
         self.logout_button_in_header = page.locator(".top-bar").get_by_role("link", name="로그아웃")
         self.customer_name_in_header = page.locator(".top-bar").locator("li#myCoupang")
-        self.coupang_banner = page.locator("#coupang-banner")
+        self.coupang_banner_above_of_header = page.locator("#coupang-banner")
         self.todays_hot = page.locator("#todaysHot")
         self.ads_side_bar = page.locator("section#contents").locator("#side-bar")
         # 오늘의 발견
@@ -84,29 +84,29 @@ class GateWay:
         self.search_close_button = page.locator("#searchBox").locator("#q_close")
 
 
-        def click_login_button(self):
-            self.login_button_in_header.click()
-            time.sleep(1)
+    def click_login_button(self):
+        self.login_button_in_header.click()
+        time.sleep(1)
 
-            login_page = LoginPage(self.page)
-            return login_page
-        
-        def click_logout_button(self):
-            self.logout_button_in_header.click()
-            time.sleep(1)
+        login_page = LoginPage(self.page)
+        return login_page
+    
+    def click_logout_button(self):
+        self.logout_button_in_header.click()
+        time.sleep(1)
 
-        def click_moweb_gnb_my_coupang(self):
-            self.gnb_by_coupang.click()
-            time.sleep(1)
+    def click_moweb_gnb_my_coupang(self):
+        self.gnb_by_coupang.click()
+        time.sleep(1)
 
-            my_coupang_page = MyCoupangPage(self.page)
-            return my_coupang_page
-        
-        def click_moweb_gnb_cart(self):
-            self.gnb_cart.click()
-            time.sleep(1)
+        my_coupang_page = MyCoupangPage(self.page)
+        return my_coupang_page
+    
+    def click_moweb_gnb_cart(self):
+        self.gnb_cart.click()
+        time.sleep(1)
 
-            cart_page = Cart(self.page)
-            return cart_page
+        cart_page = Cart(self.page)
+        return cart_page
 
         

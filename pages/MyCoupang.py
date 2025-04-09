@@ -9,6 +9,7 @@ class MyCoupangPage:
         self.keen_slider_banner = page.locator("//div[contains(@class, 'keen-slider')]")
         self.promotion_banner_image_list = page.locator("//ul[@class='promotion-banner']/li/a/img").all()
         self.cart_count = page.locator('#side-bar').locator("div.side-cart")
+        self.total_recently_viewed_count = page.locator("#side-bar").locator("div.recently-viewed-products")
         self.total_recently_viewed_products_section = page.locator('#side-bar').locator("div.recently-viewed-list")
 
         ################ mobile web elements ################

@@ -8,8 +8,8 @@ class WowMembershipPage:
         self.header_cart_count = page.locator("#header-cart-count")
         self.coupay_money_balance = page.locator("#coupayMoneyBalance")
         self.coupay_money_balance_section = page.get_by_text(re.compile("쿠페이 머니[0-9,]+원"))
-        self.coupay_cash_balance = page.locator("#coupayCashBalance")
-        self.coupay_cash_balance_section = page.get_by_text(re.compile("쿠팡캐시[0-9,]+원"))
+        self.coupang_cash_balance = page.locator("#coupayCashBalance")
+        self.coupang_cash_balance_section = page.get_by_text(re.compile("쿠팡캐시[0-9,]+원"))
 
         # Wow membership management
         self.user_badge = page.locator("//div[contains(@class, 'Main_head-line__badge)]")
@@ -20,7 +20,7 @@ class WowMembershipPage:
         self.bud_detail = page.locator("//div[contains(@class, 'monetaryDiscountUsageTable_benefit-table')]")
         self.bud_desc = page.get_by_text(re.compile("가입일(\\d+.\\d+.\\d+)부터 누적 금액 기준, 금액으로 환산 가능한 혜택만 포함"))
 
-        self.on_hold_temparary_suspension_period = page.get_by_text(re.compile("\\d{4}.\\d{2}.\\d{2} ~ \\d{4}.\\d{2}.\\d{2}"))
+        self.on_hold_temporary_suspension_period = page.get_by_text(re.compile("\\d{4}.\\d{2}.\\d{2} ~ \\d{4}.\\d{2}.\\d{2}"))
 
         # coupang play benefit
         self.coupang_play_intro_image = page.locator("//div[contains(@class, 'PlayIntroVideo_swiper-container')]")
@@ -34,7 +34,7 @@ class WowMembershipPage:
         self.promotion_banner_image_list = page.locator("//ul[@class='promotion-banner']/li/a/img").all()
         self.cart_count = page.locator("//div[@class='side-cart']")
         self.total_recently_viewed_count = page.locator("//div[@class='recently-viewed-products']")
-        self.recently_viewed_product_section = page.locator("//div[@class='recently-viewed-list']")
+        self.recently_viewed_products_section = page.locator("//div[@class='recently-viewed-list']")
 
         # Cancellation popup
         self.cancellation_popup_title = page.get_by_text("와우 멤버십 해지")
