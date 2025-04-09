@@ -1,26 +1,45 @@
-from utils import util
-from pages.GateWay import GateWay
 from playwright.sync_api import Page, expect
 import pytest
+from utils import util
+from pages.GateWay import GateWay
+import time
 
-base_url = "https://www.coupang.com"
+target_url = "https://www.coupang.com"
 
+@pytest.mark.gateway
+@pytest.mark.visual_test
+@pytest.mark.regression_test
+def test_gateway_first_view_port_visual(assert_snapshot, setup_web_browser) -> None:
+    page = setup_web_browser
+    page.goto(target_url)
+    page.wait_for_load_state("load")
+
+    expect(page).to_have_url(target_url)
+
+    gw_page = GateWay(page)
+
+    masking_list = [gw_page.coupang_banner_above_of_header, gw_page.todays_hot, gw_page.ads_side_bar, gw_page.listing_carousel_now_needed]
+    assert_snapshot(gw_page.page.screenshot(mask = masking_list), threshold = 0.2)
+
+
+@pytest.mark.skip(reason = "WIP, page length can be different due to additional coupons under product items.")
+@pytest.mark.gateway
 @pytest.mark.visual_test
 def test_gateway_initial_loading_full_page_visual(assert_snapshot, setup_browser) -> None:
     error_log = []
     page = setup_browser
     page.on("console", lambda msg: error_log.append(f"error: {msg}") if msg.type == "error" else None)
-    page.goto(base_url)
+    page.goto(target_url)
     page.wait_for_load_state("load")
 
     page = util.page_scroll_down(page, scroll_count = -1)
 
-    expect(page).to_have_url(base_url)
+    expect(page).to_have_url(target_url)
 
     gw_page = GateWay(page)
     
     ## Masking 영역 지정 ##
-    masking_list = [gw_page.coupang_banner, gw_page.todays_hot, gw_page.ads_side_bar, gw_page.listing_carousel_now_needed]
+    masking_list = [gw_page.coupang_banner_above_of_header, gw_page.todays_hot, gw_page.ads_side_bar, gw_page.listing_carousel_now_needed]
     masking_list += [gw_page.category_best_digital, gw_page.category_best_food, gw_page.category_best_beauty, gw_page.category_best_health,
                      gw_page.category_best_living, gw_page.category_best_kitchen, gw_page.category_best_woman_clothe,
                      gw_page.category_best_man_clothe, gw_page.category_best_decoration, gw_page.category_best_office,

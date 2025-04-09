@@ -1,13 +1,15 @@
-from pages.LoginPage import LoginPage
 from playwright.sync_api import Page, expect
 import pytest
+from pages.LoginPage import LoginPage
 import time
 
 base_url = "https://login.coupang.com/login/login.pang"
 
+@pytest.mark.loyalty
 @pytest.mark.visual_test
-def test_email_login_page_visual(assert_snapshot, setup_browser) -> None:
-    page = setup_browser
+@pytest.mark.regression_test
+def test_email_login_page_visual(assert_snapshot, setup_web_browser) -> None:
+    page = setup_web_browser
     page.goto(base_url)
     page.wait_for_load_state("load")
                              
@@ -17,9 +19,11 @@ def test_email_login_page_visual(assert_snapshot, setup_browser) -> None:
     assert_snapshot(login_page.page.screenshot(full_page = True))
 
 
+@pytest.mark.loyalty
 @pytest.mark.visual_test
-def test_phone_number_login_page_visual(assert_snapshot, setup_browser) -> None:
-    page = setup_browser
+@pytest.mark.regression_test
+def test_phone_number_login_page_visual(assert_snapshot, setup_web_browser) -> None:
+    page = setup_web_browser
     page.goto(base_url)
     page.wait_for_load_state("load")
                              
@@ -30,9 +34,11 @@ def test_phone_number_login_page_visual(assert_snapshot, setup_browser) -> None:
     assert_snapshot(login_page.page.screenshot(full_page = True))
 
 
+@pytest.mark.loyalty
 @pytest.mark.visual_test
-def test_qr_login_page_visual(assert_snapshot, setup_browser) -> None:
-    page = setup_browser
+@pytest.mark.regression_test
+def test_qr_login_page_visual(assert_snapshot, setup_web_browser) -> None:
+    page = setup_web_browser
     page.goto(base_url)
     page.wait_for_load_state("load")
                              
@@ -43,14 +49,3 @@ def test_qr_login_page_visual(assert_snapshot, setup_browser) -> None:
     masking_list = [login_page.qr_login_number, login_page.qr_login_image, login_page.qr_login_timer]
     assert_snapshot(login_page.page.screenshot(full_page = True, mask = masking_list))
 
-
-def test_email_login(assert_snapshot, setup_browser) -> None:
-    page = setup_browser
-    page.goto(base_url)
-    page.wait_for_load_state("load")
-                             
-    expect(page).to_have_url(base_url)
-
-    login_page = LoginPage(page)
-    time.sleep(10)
-    login_page.login_with_email("selee_nonwow@cp.com","selee965")

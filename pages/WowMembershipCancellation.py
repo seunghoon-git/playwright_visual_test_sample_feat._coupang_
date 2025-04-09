@@ -16,7 +16,7 @@ class WowMembershipCancellationPopup2:
         self.survey_option_5_textbox = page.get_by_role("textbox", name="해지 이유를 적어주시면 서비스 개선에 많은 도움이 됩니다")
         self.survey_cancellation_button = page.get_by_role("button", name="해지하기")
 
-class WowMembershipCancellationPoupup3:
+class WowMembershipCancellationPopup3:
     def __init__(self, page):
         self.page = page
         self.cancel_button = page.get_by_text("즉시 해지하기")

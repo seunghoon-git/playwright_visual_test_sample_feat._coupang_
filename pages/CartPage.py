@@ -15,8 +15,8 @@ class Cart:
         self.gnb_search = page.get_by_role("linke", name = "검색")
         self.gnb_my_coupang = page.get_by_role("link", name = "마이쿠팡")
 
-    def click_moweb_gnb_by_coupang(self):
-        from pages.MyCoupangPage import MyCoupangPage
+    def click_moweb_gnb_my_coupang(self):
+        from pages.MyCoupang import MyCoupangPage
         self.gnb_my_coupang.click()
         time.sleep(1)
 
